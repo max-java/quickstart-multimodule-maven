@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <artifactId>quickstart-multimodule</artifactId>
         <groupId>com.tutrit</groupId>
@@ -9,13 +9,21 @@
     </parent>
 
     <groupId>com.tutrit</groupId>
-    <artifactId>rest-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>rest-service</name>
+    <artifactId>quickstart-multimodule-integration-tests</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>quickstart-multimodule-integration-tests</name>
+
+    <properties>
+        <exclude.tests>nothing-to-exclude</exclude.tests>
+    </properties>
 
     <profiles>
         <profile>
             <id>file-system-repository</id>
+            <properties>
+                <exclude.tests>**/HomeControllerInMemoryTest.java</exclude.tests>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>com.tutrit</groupId>
@@ -27,6 +35,9 @@
         </profile>
         <profile>
             <id>in-memory-repository</id>
+            <properties>
+                <exclude.tests>**/HomeControllerFileSystemTest.java, **/EngineerControllerIntTest.java</exclude.tests>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>com.tutrit</groupId>
@@ -40,14 +51,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.tutrit</groupId>
+            <artifactId>repo.core</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>com.tutrit</groupId>
-            <artifactId>repo.core</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
+            <artifactId>rest-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -55,15 +68,13 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>${exclude.tests}</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
