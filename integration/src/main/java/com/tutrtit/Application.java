@@ -1,14 +1,13 @@
-package com.tutrit.restservice;
+package com.tutrtit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-//@SpringBootApplication
-//@ComponentScan(basePackages = {"com.tutrit"})
-public class RestServiceApplication {
-
+@SpringBootApplication
+@ComponentScan(basePackages = "com.tutrit")
+public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(RestServiceApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
