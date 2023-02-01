@@ -4,7 +4,7 @@
 
   <groupId>com.tutrit</groupId>
   <artifactId>quickstart-multimodule</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>quickstart-multimodule</name>
@@ -52,10 +52,10 @@
   </build>
 
   <modules>
-    <module>repo.core</module>
-    <module>repo.in.memory</module>
-    <module>repo.filesystem</module>
+    <module>persist.core</module>
     <module>rest-service</module>
-    <module>quickstart-multimodule-integration-tests</module>
+    <module>persist.memory</module>
+    <module>persist.h2</module>
+    <module>integration</module>
   </modules>
 </project>

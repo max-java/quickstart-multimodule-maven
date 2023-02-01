@@ -1,7 +1,7 @@
 package com.tutrit.restservice.client;
 
-import com.tutrit.repo.core.bean.Engineer;
-import com.tutrit.repo.core.persistence.EngineerPersistence;
+import com.tutrit.persistence.core.model.Engineer;
+import com.tutrit.persistence.core.persistence.EngineerPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +15,6 @@ public class EngineerClient {
     }
 
     public Engineer findByName(String name) {
-        try {
-            return engineerPersistence.findByName(name);
-        } catch (RuntimeException e) {
-            return new Engineer();
-        }
+        return engineerPersistence.findByName(name);
     }
 }

@@ -1,7 +1,8 @@
 package com.tutrit.restservice;
 
-import com.tutrit.repo.core.bean.User;
-import com.tutrit.repo.core.service.UserService;
+import com.tutrit.persistence.core.model.User;
+import com.tutrit.persistence.core.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     private final UserService userService;
 
-    public HomeController(final UserService userService) {
+    public HomeController(@Autowired(required = false) final UserService userService) {
         this.userService = userService;
     }
 

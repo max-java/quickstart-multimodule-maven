@@ -1,6 +1,6 @@
 package com.tutrit.restservice.controller;
 
-import com.tutrit.repo.core.bean.Engineer;
+import com.tutrit.persistence.core.model.Engineer;
 import com.tutrit.restservice.service.EngineerService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

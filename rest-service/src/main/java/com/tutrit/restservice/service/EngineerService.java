@@ -1,6 +1,7 @@
 package com.tutrit.restservice.service;
 
-import com.tutrit.repo.core.bean.Engineer;
+import com.tutrit.persistence.core.model.Engineer;
+import com.tutrit.persistence.core.model.EngineerBuilder;
 import com.tutrit.restservice.client.EngineerClient;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,8 @@ public class EngineerService {
     }
 
     public Engineer save(Engineer engineer) {
-        engineer.setName(engineer.getName().toUpperCase(Locale.ROOT));
-        return engineerClient.save(engineer);
+        Engineer uppercaseEngineer = EngineerBuilder.from(engineer).withName(engineer.name().toUpperCase(Locale.ROOT));
+        return engineerClient.save(uppercaseEngineer);
     }
 
     public Engineer findByName(String name) {
